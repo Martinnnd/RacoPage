@@ -18,7 +18,7 @@ const Header = () => {
     return (
         <>
             {/* Topbar roja */}
-            <div className="w-full bg-red-600 text-white text-xs py-1 font-semibold uppercase tracking-wide">
+            <div className="w-full bg-red-600 text-white text-xs py-1 font-semibold uppercase tracking-wide ">
                 <div className="marquee-container">
                     <div className="marquee-track">
                         <span className="mx-4">
@@ -35,23 +35,42 @@ const Header = () => {
             </div>
 
             {/* Header principal con scroll dinámico */}
-            <header className={`fixed top-0 w-full z-20 pt-6 transition-all duration-300 ${scrolled ? "bg-black shadow-md" : "bg-transparent"
-                }`}>
-                <nav className="flex items-center justify-between px-4 h-26 md:px-8 relative text-white">
+            <header className={`fixed top-0 w-full z-20 transition-all duration-300 ${scrolled ? "bg-black shadow-md" : "bg-transparent"}`}>
+                <nav className={`flex items-center justify-between px-4 mt-3 md:px-8 transition-all duration-300 ${scrolled ? "h-20" : "h-28"}`}>
                     {/* Botón hamburguesa */}
                     <button
                         onClick={() => setMenuOpen(true)}
-                        className="text-2xl text-white"
+                        className="text-2xl text-white mr-2"
                     >
                         <FaBars />
                     </button>
+
+                    {/* Input de búsqueda */}
+                    <div className="mx-2 w-52 sm:w-60 md:w-72">
+                        <div className="flex items-center border border-white text-white rounded-md px-3 py-1 transition-colors duration-300 focus-within:ring-2 focus-within:ring-white">
+                            <input
+                                type="text"
+                                placeholder="¿Qué estás buscando?"
+                                className="bg-transparent w-full outline-none text-sm placeholder-white"
+                            />
+                            <svg
+                                className="w-4 h-4 ml-2"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z" />
+                            </svg>
+                        </div>
+                    </div>
 
                     {/* Logo */}
                     <div className="absolute left-1/2 transform -translate-x-1/2">
                         <img
                             src="/LogoRaco.jpg"
                             alt="Logo"
-                            className="h-16 object-contain glow"
+                            className={`object-contain transition-all duration-300 glow ${scrolled ? "h-12" : "h-16"}`}
                         />
                     </div>
 
