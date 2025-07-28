@@ -34,4 +34,99 @@
   animation: marquee 20s linear infinite;
 }
 
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6),
+                 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+                 0 0 20px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6),
+                 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+  color: black; /* Podés cambiarlo a blanco si tenés fondo oscuro */
+}
+
+@keyframes neonPulse {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00ffe0, 0 0 40px #00ffe0;
+    color: #ffffff;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #00ffe0, 0 0 40px #00ffe0, 0 0 80px #00ffe0;
+    color: #aaffff;
+    transform: scale(1.1);
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00ffe0, 0 0 40px #00ffe0;
+    color: #ffffff;
+    transform: scale(1);
+  }
+}
+
+.neon-text {
+  font-family: 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  animation: neonPulse 2s infinite ease-in-out;
+}
+
+@keyframes neonPulseDarkRed {
+  0% {
+    color: #cc0000; /* rojo oscuro */
+    text-shadow: 
+      0 0 5px #330000, /* sombra oscura */
+      0 0 10px #cc0000,
+      0 0 20px #cc0000,
+      0 0 30px #660000;
+    transform: scale(1);
+  }
+  50% {
+    color: #ff1a1a; /* rojo brillante */
+    text-shadow: 
+      0 0 10px #800000,
+      0 0 20px #ff1a1a,
+      0 0 40px #cc0000,
+      0 0 60px #4d0000;
+    transform: scale(1.1);
+  }
+  100% {
+    color: #cc0000;
+    text-shadow: 
+      0 0 5px #330000,
+      0 0 10px #cc0000,
+      0 0 20px #cc0000,
+      0 0 30px #660000;
+    transform: scale(1);
+  }
+}
+
+.neon-text {
+  font-family: 'Arial Black', sans-serif; /* Podés reemplazar con tu font graffiti */
+  text-transform: uppercase;
+  animation: neonPulseDarkRed 2s infinite ease-in-out;
+}
+
+@font-face {
+  font-family: 'Mamboobubble';
+  src: url('./assets/fonts/vag-rounded-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-mamboo {
+  font-family: 'Mamboobubble', sans-serif;
+}
+
+
 

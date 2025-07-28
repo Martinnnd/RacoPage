@@ -78,10 +78,18 @@ const products = [
 
 const Products = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 py-8 justify-center max-w-7xl mx-auto">
-      {products.map((product, index) => (
-        <ProductCard key={index} {...product} />
-      ))}
+    <div className="px-4 py-10 max-w-7xl mx-auto">
+      {/* 🔥 Cartel animado */}
+      <h2 className="font-mamboo text-5xl font-extrabold text-center mb-12 neon-text">
+        New Drop
+      </h2>
+
+      {/* 🔥 Grid de productos */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
+        {products.map((product, index) => (
+          <ProductCard key={index} {...product} />
+        ))}
+      </div>
     </div>
   );
 };

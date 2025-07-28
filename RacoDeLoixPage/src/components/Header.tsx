@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaShoppingCart, FaUser } from "react-icons/fa";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -66,20 +67,58 @@ const Header = () => {
                 </div>
 
                 <ul className="flex flex-col gap-4 p-4 text-sm font-medium uppercase">
-                    <li className="cursor-pointer">Inicio</li>
 
-                    {/* 👉 Productos abre un menú secundario */}
-                    <li className="cursor-pointer flex justify-between items-center" onClick={() => { setSubmenuOpen(true); setMenuOpen(false); }}>
+                    <li>
+                        <Link to="/" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
+                            Inicio
+                        </Link>
+                    </li>
+
+                    {/* 👉 Productos abre submenú */}
+                    <li
+                        className="cursor-pointer flex justify-between items-center"
+                        onClick={() => { setSubmenuOpen(true); setMenuOpen(false); }}
+                    >
                         <span>Productos</span>
                         <FaChevronRight />
                     </li>
 
-                    <li className="cursor-pointer">Guía de Talles</li>
-                    <li className="cursor-pointer">Contacto</li>
-                    <li className="cursor-pointer">Preguntas Frecuentes</li>
-                    <li className="cursor-pointer">Cómo Comprar</li>
-                    <li className="cursor-pointer">Política de Cambios</li>
-                    <li className="cursor-pointer">About Us</li>
+                    <li>
+                        <Link to="/talles" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
+                            Guía de Talles
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/contacto" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
+                            Contacto
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/preguntas" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
+                            Preguntas Frecuentes
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/como-comprar" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
+                            Cómo Comprar
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/politica" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
+                            Política de Cambios
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/nosotros" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
+                            About Us
+                        </Link>
+                    </li>
+
                 </ul>
             </aside>
 

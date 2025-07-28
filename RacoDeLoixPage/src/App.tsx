@@ -4,11 +4,8 @@ import ChatbotButton from './components/ChatBotButton';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
-// 🔹 Componentes
-import Hero from './components/Hero';
-import Products from './components/Product';
-
 // 🔹 Páginas
+import Home from "./pages/Home";
 import Productos from "./pages/Productos";
 import Talles from "./pages/Talles";
 import Contacto from "./pages/Contacto";
@@ -22,15 +19,7 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        {/* 🏠 Página principal */}
-        <Route path="/" element={
-          <>
-            <Hero />
-            <Products />
-          </>
-        } />
-        
-        {/* 📄 Otras páginas */}
+        <Route path="/" element={<Home />} />
         <Route path="/productos" element={<Productos />} />
         <Route path="/talles" element={<Talles />} />
         <Route path="/contacto" element={<Contacto />} />
@@ -39,7 +28,6 @@ function App() {
         <Route path="/politica" element={<Politica />} />
         <Route path="/nosotros" element={<Nosotros />} />
       </Routes>
-
       <Footer />
       <ChatbotButton />
     </Router>
