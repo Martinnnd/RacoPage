@@ -3,6 +3,9 @@ import './App.css';
 import ChatbotButton from './components/ChatBotButton';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import CategoryShowcase from './components/CategoryShowcase';
+import StoreLocation from './components/StoreLocation';
+import ProductGrid from './components/ProductSlider';
 
 // 🔹 Páginas
 import Home from "./pages/Home";

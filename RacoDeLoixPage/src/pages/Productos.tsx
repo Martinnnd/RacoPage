@@ -1,6 +1,7 @@
+import Products from "../components/Product";
 
 export default function Productos() {
   return (
-    <div>Productos</div>
+    <Products />
   )
 }

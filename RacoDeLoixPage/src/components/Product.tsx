@@ -80,7 +80,7 @@ const Products = () => {
   return (
     <div className="px-4 py-10 max-w-7xl mx-auto">
       {/* 🔥 Cartel animado */}
-      <h2 className="font-mamboo text-5xl font-extrabold text-center mb-12 neon-text">
+      <h2 className="font-jakarta text-5xl font-extrabold text-center mb-12 neon-text">
         New Drop
       </h2>
 
