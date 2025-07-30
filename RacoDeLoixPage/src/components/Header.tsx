@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaShoppingCart, FaUser } from "react-icons/fa";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -9,12 +9,19 @@ const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const [submenuOpen, setSubmenuOpen] = useState(false);
 
-    // Detectar scroll para cambiar el fondo del header
+    const location = useLocation();
+    const isHome = location.pathname === "/";
+
+    // Detectar scroll solo en Home, en otras páginas siempre negro
     useEffect(() => {
+        if (!isHome) {
+            setScrolled(true);
+            return;
+        }
         const onScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    }, [isHome]);
 
     return (
         <>
@@ -30,7 +37,7 @@ const Header = () => {
             </div>
 
             {/* 🟢 Header principal */}
-            <header className={`fixed top-0 w-full z-20 transition-all duration-300 ${scrolled ? "bg-black shadow-md" : "bg-transparent"}`}>
+            <header className={`fixed top-0 w-full z-20 mb-7 transition-all duration-300 ${scrolled ? "bg-black shadow-md" : "bg-transparent"}`}>
                 <nav className={`flex items-center justify-between px-4 mt-3 md:px-8 transition-all duration-300 ${scrolled ? "h-20" : "h-28"}`}>
                     {/* 🍔 Botón hamburguesa */}
                     <button onClick={() => setMenuOpen(true)} className="text-2xl text-white mr-2">
@@ -135,6 +142,11 @@ const Header = () => {
                 </div>
 
                 <ul className="flex flex-col gap-3 p-4 text-sm text-gray-700 uppercase">
+                    <li className="cursor-pointer">
+                        <Link to="/productos" className="block w-full h-full">
+                            Ver todos los productos
+                        </Link>
+                    </li>
                     <li className="cursor-pointer">DROP THIS IS COOL</li>
                     <li className="cursor-pointer">DROP DAUNTLESS DREAMERS</li>
                     <li className="cursor-pointer">BUZOS / ABRIGOS</li>

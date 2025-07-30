@@ -184,5 +184,34 @@
   
 }
 
+/* Estilo base */
+input[type="checkbox"] {
+  appearance: none;        /* Quita el estilo por defecto */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #333;  /* borde gris/negro */
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Cuando está checkeado, no cambia el fondo, solo agrega el tilde */
+input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: #333;             /* color del tilde */
+  font-size: 14px;
+  position: absolute;
+  top: -2px;
+  left: 2px;
+}
+
+/* Efecto hover opcional */
+input[type="checkbox"]:hover {
+  border-color: #666;
+}
+
 
 
