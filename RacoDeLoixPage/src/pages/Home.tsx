@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Products />
+      <Products showTitle={true} />
       <CategoryShowcase />
       <ProductGrid />
       <StoreLocation />

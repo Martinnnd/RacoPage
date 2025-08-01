@@ -76,13 +76,19 @@ const products = [
   },
 ];
 
-const Products = () => {
+interface ProductsProps {
+  showTitle?: boolean; // <-- agregamos una prop opcional
+}
+
+const Products: React.FC<ProductsProps> = ({ showTitle = false }) => {
   return (
     <div className="px-4 py-10 max-w-7xl mx-auto mt-12">
-      {/* 🔥 Cartel animado */}
-      <h2 className="font-jakarta text-5xl font-extrabold text-center mb-12 neon-text">
-        New Drop
-      </h2>
+      {/* 🔥 Mostrar solo si showTitle es true */}
+      {showTitle && (
+        <h2 className="font-jakarta text-5xl font-extrabold text-center mb-12 neon-text">
+          New Drop
+        </h2>
+      )}
 
       {/* 🔥 Grid de productos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
