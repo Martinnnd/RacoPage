@@ -3,9 +3,9 @@ import Products from "../components/Product";
 
 export default function Productos() {
   return (
-    <div className="flex px-4 md:px-8 mt-10 gap-8">
+    <div className="flex px-4 md:px-8 mt-16 gap-8">
       {/* Columna de filtros */}
-      <div className="w-1/5 pt-20">
+      <div className="w-1/5 ">
         <Filters />
       </div>
 
