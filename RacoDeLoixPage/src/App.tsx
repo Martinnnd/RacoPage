@@ -1,13 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import ChatbotButton from './components/ChatBotButton';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import CategoryShowcase from './components/CategoryShowcase';
-import StoreLocation from './components/StoreLocation';
-import ProductGrid from './components/ProductSlider';
-
-// 🔹 Páginas
 import Home from "./pages/Home";
 import Productos from "./pages/Productos";
 import Talles from "./pages/Talles";
@@ -16,6 +11,13 @@ import Preguntas from "./pages/Preguntas";
 import ComoComprar from "./pages/ComoComprar";
 import Politica from "./pages/Politica";
 import Nosotros from "./pages/Nosotros";
+
+// 🔥 Componente auxiliar para condicionar el ChatbotButton
+const ChatbotWrapper = () => {
+  const location = useLocation();
+  const isPreguntasPage = location.pathname === "/preguntas";
+  return !isPreguntasPage ? <ChatbotButton /> : null;
+};
 
 function App() {
   return (
@@ -32,7 +34,8 @@ function App() {
         <Route path="/nosotros" element={<Nosotros />} />
       </Routes>
       <Footer />
-      <ChatbotButton />
+      {/* 🔥 El botón solo aparece si NO estamos en /preguntas */}
+      <ChatbotWrapper />
     </Router>
   );
 }
