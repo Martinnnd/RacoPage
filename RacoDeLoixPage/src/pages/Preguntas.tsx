@@ -1,7 +1,11 @@
+import RacobotFAQ from "../components/RacobotFAQ";
 
 
 export default function Preguntas() {
   return (
-    <div>Preguntas</div>
-  )
+    <div className="mt-14">
+      <RacobotFAQ />
+    </div>
+  );
 }
+
