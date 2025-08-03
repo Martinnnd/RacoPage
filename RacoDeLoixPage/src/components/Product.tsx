@@ -2,6 +2,7 @@ import ProductCard from "./ProductCard";
 
 const products = [
   {
+    id: "buzo-ess-crema",
     title: "BUZO RACO ESS (Crema)",
     price: "$94.900,00",
     transferPrice: "$80.665,00 con Transferencia",
@@ -10,6 +11,7 @@ const products = [
     hoverImageUrl: "/buzoBack.jpg",
   },
   {
+    id: "remera-layered-bordo",
     title: "REMERA LAYERED SLEEVE BORDO",
     price: "$49.900,00",
     transferPrice: "$42.415,00 con Transferencia",
@@ -19,6 +21,7 @@ const products = [
     outOfStock: true,
   },
   {
+    id: "jogging-baggy-cream",
     title: "JOGGING BAGGY CREAM",
     price: "$79.900,00",
     transferPrice: "$67.915,00 con Transferencia",
@@ -27,6 +30,7 @@ const products = [
     hoverImageUrl: "/joggingBack.jpg",
   },
   {
+    id: "non-stitch-zip-hood",
     title: "NON-STITCH ZIP HOOD (Boxy Black)",
     price: "$94.900,00",
     transferPrice: "$80.665,00 con Transferencia",
@@ -35,6 +39,7 @@ const products = [
     hoverImageUrl: "/buzoBlackBack.jpg",
   },
   {
+    id: "jogging-baggy-black",
     title: "JOGGING BAGGY BLACK",
     price: "$79.900,00",
     transferPrice: "$67.915,00 con Transferencia",
@@ -43,6 +48,7 @@ const products = [
     hoverImageUrl: "/joggingBlackBack.jpeg",
   },
   {
+    id: "campera-tracksuit-green",
     title: "CAMPERA TRACKSUIT GREEN",
     price: "$94.900,00",
     transferPrice: "$80.665,00 con Transferencia",
@@ -51,6 +57,7 @@ const products = [
     hoverImageUrl: "/zipVerdeBack.jpg",
   },
   {
+    id: "pantalon-tracksuit-green",
     title: "PANTALON TRACKSUIT GREEN",
     price: "$84.900,00",
     transferPrice: "$72.165,00 con Transferencia",
@@ -59,6 +66,7 @@ const products = [
     hoverImageUrl: "/joggingVerdeBack.jpg"
   },
   {
+    id: "campera-denin-puff",
     title: "CAMPERA DENIM PUFF",
     price: "$189.900,00",
     transferPrice: "$161.415,00 con Transferencia",
@@ -67,6 +75,7 @@ const products = [
     hoverImageUrl: "/pufferBack.jpeg",
   },
   {
+    id: "knitwear-blue",
     title: "KNITWEAR (Blue)",
     price: "$94.900,00",
     transferPrice: "$80.665,00 con Transferencia",
@@ -92,8 +101,8 @@ const Products: React.FC<ProductsProps> = ({ showTitle = false }) => {
 
       {/* 🔥 Grid de productos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
-        {products.map((product, index) => (
-          <ProductCard key={index} {...product} />
+        {products.map((product) => (
+          <ProductCard key={product.id} {...product} />
         ))}
       </div>
     </div>
