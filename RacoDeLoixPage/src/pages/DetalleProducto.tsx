@@ -1,55 +1,91 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { products } from "../data/productsData";
 
 const DetalleProducto = () => {
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!product) return <div className="p-10">Producto no encontrado</div>;
 
   return (
-    <div className="max-w mx-auto p-10 mt-20 grid grid-cols-1 lg:grid-cols-3 gap-12">
-      {/* 📸 Contenedor de imágenes */}
-      <div className="lg:col-span-2 grid grid-cols-2 gap-4">
-        {product.images.slice(0, 2).map((img, i) => (
-          <div key={i} className="overflow-hidden rounded-lg">
+    <div className="mx-auto p-6 mt-16 flex flex-col lg:flex-row gap-10">
+      
+      {/* 📸 CONTENEDOR DE IMAGENES (IZQUIERDA) */}
+      <div className="flex-[2] flex gap-4">
+        
+        {/* Miniaturas verticales */}
+        <div className="flex flex-col gap-3 w-24">
+          {product.images.map((img: string, i: number) => (
             <img
+              key={i}
               src={img}
-              alt={product.title}
-              className="w-full h-full object-cover rounded-lg shadow-md"
+              alt={`thumb-${i}`}
+              onClick={() => setCurrentIndex(i)}
+              className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${
+                currentIndex === i ? "border-black" : "border-transparent"
+              } hover:opacity-80 transition`}
             />
-          </div>
-        ))}
-      </div>
-
-      {/* 📝 Información */}
-      <div className="flex flex-col justify-start">
-        <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
-
-        <p className="text-2xl font-semibold mb-2">{product.price}</p>
-        <p className="text-gray-600 text-lg mb-2">{product.transferPrice}</p>
-        <p className="text-sm text-gray-500 mb-6">{product.installments}</p>
-
-        {/* 🔹 Talles */}
-        <div className="mb-6">
-          <h3 className="font-medium mb-2">Talle:</h3>
-          <div className="flex gap-3">
-            {product.sizes.map((size) => (
-              <button
-                key={size}
-                className="border border-black px-4 py-2 rounded hover:bg-black hover:text-white transition"
-              >
-                {size}
-              </button>
-            ))}
-          </div>
+          ))}
         </div>
 
-        {/* 🔹 Descripción */}
-        <p className="text-gray-700 mb-8 leading-relaxed">{product.description}</p>
+        {/* Imagen principal con altura controlada */}
+        <div className="flex-1 flex justify-center items-center overflow-hidden rounded-lg shadow-md max-h-[700px]">
+          <img
+            src={product.images[currentIndex]}
+            alt={product.title}
+            className="max-h-[1000px] w-full object-center rounded-lg"
+          />
+        </div>
+      </div>
 
-        {/* 🔹 Botón */}
-        <button className="w-full bg-black text-white py-4 uppercase font-bold tracking-wider hover:bg-gray-800 transition">
+      {/* 📝 INFORMACIÓN (DERECHA) */}
+      <div className="flex-[1] flex flex-col justify-start pl-10">
+        <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
+
+        <p className="text-2xl font-semibold mb-1">{product.price}</p>
+        <p className="text-gray-600 text-lg mb-1">{product.transferPrice}</p>
+        <p className="text-sm text-gray-500 mb-1">Precio sin impuestos: {product.priceWithoutTaxes}</p>
+        <p className="text-sm text-gray-500 mb-4">{product.installments}</p>
+
+        {product.shipping && (
+          <p className="text-sm text-green-700 font-medium mb-6">{product.shipping}</p>
+        )}
+
+        {/* 🔹 Talles */}
+        <h3 className="font-semibold mb-2">Talles disponibles:</h3>
+        <div className="flex gap-3 mb-3">
+          {product.sizes.map((sizeObj: any) => (
+            <button
+              key={sizeObj.size}
+              className="border border-black px-3 py-1 rounded hover:bg-black hover:text-white transition"
+            >
+              {sizeObj.size}
+            </button>
+          ))}
+        </div>
+
+        <ul className="text-sm text-gray-700 space-y-1 mb-6">
+          {product.sizes.map((s: any) => (
+            <li key={s.size}>
+              <strong>{s.size}:</strong> {s.dimensions} {s.note && <em>({s.note})</em>}
+            </li>
+          ))}
+        </ul>
+
+        <p className="text-gray-700 mb-4 leading-relaxed">{product.description}</p>
+        <p className="italic text-gray-600 mb-4">{product.fit}</p>
+
+        {product.extras?.uniqueDesign && (
+          <p className="text-gray-800 font-medium mb-4">{product.extras.uniqueDesign}</p>
+        )}
+
+        {product.stockNote && (
+          <p className="text-red-600 text-sm mb-4">{product.stockNote}</p>
+        )}
+
+        <button className="w-full bg-black text-white py-4 uppercase font-bold tracking-wider rounded-xl hover:bg-gray-800 transition">
           Agregar al carrito
         </button>
       </div>

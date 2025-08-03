@@ -21,7 +21,7 @@ const products = [
     outOfStock: true,
   },
   {
-    id: "jogging-baggy-cream",
+    id: "jogging-cream",
     title: "JOGGING BAGGY CREAM",
     price: "$79.900,00",
     transferPrice: "$67.915,00 con Transferencia",
