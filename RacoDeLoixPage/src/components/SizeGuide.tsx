@@ -144,16 +144,27 @@ const sizeData = [
 // ✅ Componente principal con título
 const SizeGuide = () => {
   return (
-    <div className="max-w-6xl mx-auto p-6 mt-24">
-      <p className="font-jakarta text-center text-xs mb-12 neon-red-outline">
-        Guía de talles
-      </p>
+    <div
+      className="relative overflow-hidden min-h-screen py-24 px-4 bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/public/heroTalles.jpg')",
+      }}
+    >
+      {/* Overlay oscuro para contraste */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-opacity-60 z-0"></div>
 
-      {/* 🔥 Contenedor de tablas en dos columnas */}
-      <div className="flex flex-wrap justify-between gap-6">
-        {sizeData.map((item, i) => (
-          <SizeTable key={i} title={item.title} columns={item.columns} rows={item.rows} />
-        ))}
+      {/* Contenido encima del fondo */}
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <p className="font-jakarta text-center text-xs mb-12 neon-red-outline">
+          Guía de talles
+        </p>
+
+        {/* Tablas de talles */}
+        <div className="flex flex-wrap justify-between gap-6">
+          {sizeData.map((item, i) => (
+            <SizeTable key={i} title={item.title} columns={item.columns} rows={item.rows} />
+          ))}
+        </div>
       </div>
     </div>
   );
