@@ -103,6 +103,12 @@ const Header = () => {
                     </li>
 
                     <li>
+                        <Link to="/racobot" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
+                             Racobot
+                        </Link>
+                    </li>
+
+                    <li>
                         <Link to="/preguntas" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
                             Preguntas Frecuentes
                         </Link>

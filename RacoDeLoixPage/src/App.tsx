@@ -12,6 +12,7 @@ import Preguntas from "./pages/Preguntas";
 import ComoComprar from "./pages/ComoComprar";
 import Politica from "./pages/Politica";
 import Nosotros from "./pages/Nosotros";
+import Racobot from './pages/Racobot';
 
 // 🔥 Componente auxiliar para condicionar el ChatbotButton
 const ChatbotWrapper = () => {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/producto/:id" element={<DetalleProducto />} />
         <Route path="/talles" element={<Talles />} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/racobot" element={<Racobot />} />
         <Route path="/preguntas" element={<Preguntas />} />
         <Route path="/como-comprar" element={<ComoComprar />} />
         <Route path="/politica" element={<Politica />} />
