@@ -14,6 +14,7 @@ import Politica from "./pages/Politica";
 import Nosotros from "./pages/Nosotros";
 import Login from './pages/Login';
 import Racobot from './pages/Racobot';
+import ScrollToTop from './components/ScrollToTop';
 
 // 🔥 Componente auxiliar para condicionar el ChatbotButton
 const ChatbotWrapper = () => {
@@ -25,6 +26,7 @@ const ChatbotWrapper = () => {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
