@@ -280,6 +280,30 @@ input[type="checkbox"]:hover {
   animation: quoteGlow 1.2s ease forwards;
 }
 
+@keyframes tapeScroll {
+  0%   { background-position: 0 0; }
+  100% { background-position: 200px 0; }
+}
+
+/* Cinta diagonal con efecto neón */
+.diagonal-tape {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #ff1e1e 0 24px,   /* rojo neón fuerte */
+    transparent 24px 48px
+  );
+  background-size: 48px 48px;
+  animation: tapeScroll 3.5s linear infinite;
+
+  /* 💡 Efecto neón */
+  filter: drop-shadow(0 0 6px #ff1e1e)
+          drop-shadow(0 0 12px #ff1e1e)
+          drop-shadow(0 0 24px #ff1e1e);
+}
+
+
+
+
 
 
 

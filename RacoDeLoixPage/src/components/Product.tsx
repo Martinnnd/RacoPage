@@ -89,23 +89,51 @@ interface ProductsProps {
   showTitle?: boolean; // <-- agregamos una prop opcional
 }
 
+// /** Cinta que se “full-bleed” a todo el ancho de la pantalla */
+// const TapeStrip = () => (
+//   <div
+//     className="
+//       relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]
+//       w-screen h-6 md:h-8 lg:h-10 overflow-hidden mb-8
+//     "
+//   >
+//     <div className="diagonal-tape w-[200%] h-full" />
+//   </div>
+// );
+
 const Products: React.FC<ProductsProps> = ({ showTitle = false }) => {
   return (
-    <div className="px-4 py-10 max-w-7xl mx-auto mt-12">
-      {/* 🔥 Mostrar solo si showTitle es true */}
-      {showTitle && (
-        <h2 className="font-jakarta text-5xl font-extrabold text-center mb-12 neon-text">
-          New Drop
-        </h2>
-      )}
+    <section
+      className="relative px-4 py-10"
+      style={{
+        backgroundImage: "url('/heroTalles.jpg')", // Cambiá la ruta a la imagen que quieras
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      {/* Overlay oscuro para dar contraste */}
+      <div className="absolute inset-0 bg-black/20" />
 
-      {/* 🔥 Grid de productos */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
+      <div className="relative max-w-7xl mx-auto">
+        {showTitle && (
+          <>
+            {/* <TapeStrip /> */}
+            <h2 className="font-jakarta text-5xl font-extrabold text-center my-6 neon-text">
+              New Drop
+            </h2>
+            {/* <TapeStrip /> */}
+          </>
+        )}
+
+        {/* Grid de productos */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
+          {products.map((product) => (
+            <ProductCard key={product.id} {...product} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

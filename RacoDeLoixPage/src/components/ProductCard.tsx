@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   return (
     <Link to={`/producto/${id}`}>
-      <div className="w-full max-w-sm rounded-2xl overflow-hidden shadow-md cursor-pointer">
+      <div className="w-full max-w-sm rounded-2xl overflow-hidden shadow-md cursor-pointer bg-white">
         <div className="relative group h-[500px]">
           {/* Imagen principal */}
           <img
@@ -51,7 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Información del producto */}
-        <div className="mt-3 px-3 py-2">
+        <div className="bg-white mt-3 px-3 py-2">
           <h3 className="text-sm font-semibold">{title}</h3>
           <p className="text-sm font-bold text-black">{price}</p>
           <p className="text-sm text-gray-600">{transferPrice}</p>
