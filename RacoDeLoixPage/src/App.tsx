@@ -12,6 +12,7 @@ import Preguntas from "./pages/Preguntas";
 import ComoComprar from "./pages/ComoComprar";
 import Politica from "./pages/Politica";
 import Nosotros from "./pages/Nosotros";
+import Login from './pages/Login';
 import Racobot from './pages/Racobot';
 
 // 🔥 Componente auxiliar para condicionar el ChatbotButton
@@ -36,6 +37,7 @@ function App() {
         <Route path="/como-comprar" element={<ComoComprar />} />
         <Route path="/politica" element={<Politica />} />
         <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
       {/* 🔥 El botón solo aparece si NO estamos en /preguntas */}

@@ -61,8 +61,13 @@ const Header = () => {
 
                     {/* 👤🛒 Iconos derecha */}
                     <div className="flex items-center gap-4 text-xl ml-auto">
-                        <FaUser className="text-white cursor-pointer" />
-                        <FaShoppingCart className="text-white cursor-pointer" onClick={() => setCartOpen(true)} />
+                        <Link to="/login">
+                            <FaUser className="text-white cursor-pointer" />
+                        </Link>
+                        <FaShoppingCart
+                            className="text-white cursor-pointer"
+                            onClick={() => setCartOpen(true)}
+                        />
                     </div>
                 </nav>
             </header>
@@ -104,7 +109,7 @@ const Header = () => {
 
                     <li>
                         <Link to="/racobot" onClick={() => setMenuOpen(false)} className="block cursor-pointer">
-                             Racobot
+                            Racobot
                         </Link>
                     </li>
 

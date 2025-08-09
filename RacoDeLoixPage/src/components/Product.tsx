@@ -1,5 +1,7 @@
 import ProductCard from "./ProductCard";
 
+type Variant = "home" | "listing";
+
 const products = [
   {
     id: "buzo-ess-crema",
@@ -75,18 +77,50 @@ const products = [
     hoverImageUrl: "/pufferBack.jpeg",
   },
   {
-    id: "knitwear-blue",
-    title: "KNITWEAR (Blue)",
+    id: "campera-tracksuit-green",
+    title: "CAMPERA TRACKSUIT GREEN",
     price: "$94.900,00",
     transferPrice: "$80.665,00 con Transferencia",
     installments: "6 cuotas sin interés de $15.816,67",
-    imageUrl: "/knitwear.png",
-    hoverImageUrl: "/knitwearBack.jpeg",
+    imageUrl: "/zipVerde.jpeg",
+    hoverImageUrl: "/zipVerdeBack.jpg",
+  },
+  {
+    id: "remera-layered-bordo",
+    title: "REMERA LAYERED SLEEVE BORDO",
+    price: "$49.900,00",
+    transferPrice: "$42.415,00 con Transferencia",
+    installments: "6 cuotas sin interés de $8.316,67",
+    imageUrl: "/remera.jpeg",
+    hoverImageUrl: "/remeraBack.jpeg",
+    outOfStock: true,
+  },
+  {
+    id: "remera-layered-bordo",
+    title: "REMERA LAYERED SLEEVE BORDO",
+    price: "$49.900,00",
+    transferPrice: "$42.415,00 con Transferencia",
+    installments: "6 cuotas sin interés de $8.316,67",
+    imageUrl: "/remera.jpeg",
+    hoverImageUrl: "/remeraBack.jpeg",
+    outOfStock: true,
+  },
+  {
+    id: "remera-layered-bordo",
+    title: "REMERA LAYERED SLEEVE BORDO",
+    price: "$49.900,00",
+    transferPrice: "$42.415,00 con Transferencia",
+    installments: "6 cuotas sin interés de $8.316,67",
+    imageUrl: "/remera.jpeg",
+    hoverImageUrl: "/remeraBack.jpeg",
+    outOfStock: true,
   },
 ];
 
 interface ProductsProps {
-  showTitle?: boolean; // <-- agregamos una prop opcional
+  showTitle?: boolean;
+  /** "home" = 4 columnas + fondo; "listing" = 3 columnas sin fondo */
+  variant?: Variant;
 }
 
 // /** Cinta que se “full-bleed” a todo el ancho de la pantalla */
@@ -101,33 +135,98 @@ interface ProductsProps {
 //   </div>
 // );
 
-const Products: React.FC<ProductsProps> = ({ showTitle = false }) => {
-  return (
-    <section
-      className="relative px-4 py-10"
-      style={{
-        backgroundImage: "url('/heroTalles.jpg')", // Cambiá la ruta a la imagen que quieras
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      {/* Overlay oscuro para dar contraste */}
-      <div className="absolute inset-0 bg-black/20" />
+// const Products: React.FC<ProductsProps> = ({ showTitle = false }) => {
+//   return (
+//     <section
+//       className="relative px-4 py-10"
+//       style={{
+//         backgroundImage: "url('/heroTalles.jpg')", // Cambiá la ruta a la imagen que quieras
+//         backgroundSize: "cover",
+//         backgroundPosition: "center",
+//         backgroundAttachment: "fixed",
+//       }}
+//     >
+//       {/* Overlay oscuro para dar contraste */}
+//       <div className="absolute inset-0 bg-black/20" />
 
-      <div className="relative max-w-7xl mx-auto">
-        {showTitle && (
-          <>
-            {/* <TapeStrip /> */}
-            <h2 className="font-jakarta text-5xl font-extrabold text-center my-6 neon-text">
-              New Drop
+//       <div className="relative max-w-7xl mx-auto">
+//         {showTitle && (
+//           <>
+//             {/* <TapeStrip /> */}
+//             <h2 className="font-jakarta text-5xl font-extrabold text-center my-6 neon-text">
+//               New Drop
+//             </h2>
+//             {/* <TapeStrip /> */}
+//           </>
+//         )}
+
+//         {/* Grid de productos */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
+//           {products.map((product) => (
+//             <ProductCard key={product.id} {...product} />
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+const Products: React.FC<ProductsProps> = ({ showTitle = false, variant = "listing" }) => {
+  const isHome = variant === "home";
+
+  // clases del grid según la variante
+  const gridClasses = isHome
+    ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+    : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8";
+
+  // contenedor más ancho en home
+  const containerClasses = isHome
+    ? "relative mx-auto w-full max-w-[1600px]" // usa más ancho pero no full
+    : "relative mx-auto w-full max-w-7xl";     // ancho estándar
+
+  // Wrapper: con imagen de fondo SÓLO en Home
+  if (isHome) {
+    return (
+      <section
+        className="relative px-4 py-10"
+        style={{
+          backgroundImage: "url('/heroTalles.jpg')", 
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Overlay para contraste */}
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
+
+        <div className={containerClasses}>
+          {showTitle && (
+            <h2 className="font-jakarta text-5xl font-extrabold text-center my-6 mb-16 relative neon-title">
+              NEW DROP
             </h2>
-            {/* <TapeStrip /> */}
-          </>
+          )}
+
+          <div className={gridClasses}>
+            {products.map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Variante "listing" (Productos): sin fondo y 3 columnas
+  return (
+    <section className="px-4 py-10">
+      <div className={containerClasses}>
+        {showTitle && (
+          <h2 className="font-jakarta text-5xl font-extrabold text-center mb-12 neon-text">
+            New Drop
+          </h2>
         )}
 
-        {/* Grid de productos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
+        <div className={gridClasses}>
           {products.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
