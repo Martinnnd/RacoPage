@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 
-type Variant = "home" | "listing";
+type Variant = "home" | "minimal";
 
 const products = [
   {
@@ -123,82 +123,33 @@ interface ProductsProps {
   variant?: Variant;
 }
 
-// /** Cinta que se “full-bleed” a todo el ancho de la pantalla */
-// const TapeStrip = () => (
-//   <div
-//     className="
-//       relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]
-//       w-screen h-6 md:h-8 lg:h-10 overflow-hidden mb-8
-//     "
-//   >
-//     <div className="diagonal-tape w-[200%] h-full" />
-//   </div>
-// );
-
-// const Products: React.FC<ProductsProps> = ({ showTitle = false }) => {
-//   return (
-//     <section
-//       className="relative px-4 py-10"
-//       style={{
-//         backgroundImage: "url('/heroTalles.jpg')", // Cambiá la ruta a la imagen que quieras
-//         backgroundSize: "cover",
-//         backgroundPosition: "center",
-//         backgroundAttachment: "fixed",
-//       }}
-//     >
-//       {/* Overlay oscuro para dar contraste */}
-//       <div className="absolute inset-0 bg-black/20" />
-
-//       <div className="relative max-w-7xl mx-auto">
-//         {showTitle && (
-//           <>
-//             {/* <TapeStrip /> */}
-//             <h2 className="font-jakarta text-5xl font-extrabold text-center my-6 neon-text">
-//               New Drop
-//             </h2>
-//             {/* <TapeStrip /> */}
-//           </>
-//         )}
-
-//         {/* Grid de productos */}
-//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
-//           {products.map((product) => (
-//             <ProductCard key={product.id} {...product} />
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
 const Products: React.FC<ProductsProps> = ({ showTitle = false, variant = "listing" }) => {
   const isHome = variant === "home";
 
-  // clases del grid según la variante
-  const gridClasses = isHome
-    ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
-    : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8";
-
-  // contenedor más ancho en home
+  /** Clases del contenedor (ancho) */
   const containerClasses = isHome
-    ? "relative mx-auto w-full max-w-[1600px]" // usa más ancho pero no full
-    : "relative mx-auto w-full max-w-7xl";     // ancho estándar
+    ? "relative mx-auto w-full max-w-[1900px]"
+    : "relative mx-auto w-full max-w-[1750px]"; // más ancho para catálogo
 
-  // Wrapper: con imagen de fondo SÓLO en Home
+  /** Clases del grid */
+  const gridClasses = isHome
+    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+    : // catálogo: 2→3→4→5 columnas con separaciones verticales aireadas
+      "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-10 gap-y-16";
+
   if (isHome) {
     return (
       <section
         className="relative px-4 py-10"
         style={{
-          backgroundImage: "url('/heroTalles.jpg')", 
+          // si querés volver a activar el fondo, descomentá
+          // backgroundImage: "url('/heroTalles.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
         }}
       >
-        {/* Overlay para contraste */}
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-
+        <div className="absolute inset-0  backdrop-blur-sm" />
         <div className={containerClasses}>
           {showTitle && (
             <h2 className="font-jakarta text-5xl font-extrabold text-center my-6 mb-16 relative neon-title">
@@ -207,8 +158,8 @@ const Products: React.FC<ProductsProps> = ({ showTitle = false, variant = "listi
           )}
 
           <div className={gridClasses}>
-            {products.map((product) => (
-              <ProductCard key={product.id} {...product} />
+            {products.map((p) => (
+              <ProductCard key={p.id} {...p} variant="default" />
             ))}
           </div>
         </div>
@@ -216,19 +167,27 @@ const Products: React.FC<ProductsProps> = ({ showTitle = false, variant = "listi
     );
   }
 
-  // Variante "listing" (Productos): sin fondo y 3 columnas
+  /** Variante listing (catálogo minimal) */
   return (
-    <section className="px-4 py-10">
+    <section className="px-4 md:px-8 lg:px-10 py-10">
       <div className={containerClasses}>
         {showTitle && (
-          <h2 className="font-jakarta text-5xl font-extrabold text-center mb-12 neon-text">
-            New Drop
-          </h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[22px] font-semibold tracking-wide">NEW ARRIVALS</h2>
+            <button className="text-sm underline underline-offset-4 hover:opacity-70">
+              VER TODO
+            </button>
+          </div>
         )}
 
         <div className={gridClasses}>
-          {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
+          {products.map((p, i) => (
+            <ProductCard
+              key={p.id + i}
+              {...p}
+              variant="minimal"       // 👈 estilo catálogo
+              badge={i < 8 ? "NEW IN" : undefined} // opcional: marcar los primeros como "NEW IN"
+            />
           ))}
         </div>
       </div>

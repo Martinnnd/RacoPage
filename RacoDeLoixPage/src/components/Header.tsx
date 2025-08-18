@@ -63,7 +63,7 @@ const Header = () => {
 
           {/* 🟡 Logo */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
-            <img src="/LogoRaco.jpg" alt="Logo" className={`object-contain transition-all duration-300 glow ${scrolled ? "h-12" : "h-16"}`} />
+            <img src="/LogoRaco2.jpg" alt="Logo" className={`object-contain transition-all duration-300 glow ${scrolled ? "h-12" : "h-16"}`} />
           </div>
 
           {/* 👤🛒 Iconos derecha */}
